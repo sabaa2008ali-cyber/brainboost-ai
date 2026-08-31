@@ -26,12 +26,11 @@
         }
 
         .container {
-            max-width: 850px;
+            max-width: 900px;
             margin: 30px auto;
             padding: 20px;
         }
 
-        /* Top Bar for Language & Accessibility */
         .top-bar {
             display: flex;
             justify-content: space-between;
@@ -57,52 +56,96 @@
 
         .creator-badge {
             font-size: 0.9rem;
-            color: #64748b;
-            background: #f1f5f9;
-            padding: 6px 12px;
-            border-radius: 6px;
+            color: #4f46e5;
+            background: #e0e7ff;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .creator-badge span.quote {
+            font-size: 0.75rem;
+            color: #6366f1;
             font-weight: 500;
         }
 
-        header {
+        .brand-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
             text-align: center;
-            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
         }
 
         header h1 {
             color: var(--primary-color);
-            font-size: 2.3rem;
-            margin-bottom: 10px;
+            font-size: 2.2rem;
+            margin: 0;
         }
 
         header p {
             color: #64748b;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             max-width: 700px;
-            margin: 0 auto;
+            margin: 5px auto 0 auto;
         }
 
-        /* Welcome & Motivation Banner */
-        .welcome-banner {
+        .hero-banner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
             color: white;
-            padding: 25px;
-            border-radius: 12px;
+            padding: 30px;
+            border-radius: 16px;
             margin-bottom: 25px;
-            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.2);
+            box-shadow: 0 6px 15px rgba(79, 70, 229, 0.25);
             text-align: center;
+            gap: 15px;
         }
 
-        .welcome-banner h2 {
-            margin-top: 0;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+        .hero-img-container {
+            width: 100%;
+            max-height: 220px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
 
-        .welcome-banner p {
-            font-size: 1.05rem;
+        .hero-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-banner h2 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .hero-banner p {
+            font-size: 1rem;
             opacity: 0.95;
             margin: 0;
+            max-width: 750px;
         }
 
         .card {
@@ -184,9 +227,9 @@
             font-size: 1.05rem;
             color: var(--text-color);
             border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
 
-        /* Accessibility Modes */
         body.dyslexia-mode {
             font-family: 'Courier New', Courier, monospace !important;
             letter-spacing: 1px;
@@ -206,6 +249,10 @@
             color: #f8fafc;
         }
 
+        body.dark-mode .creator-badge span.quote {
+            color: #818cf8;
+        }
+
         .options-bar {
             display: flex;
             justify-content: space-between;
@@ -220,10 +267,11 @@
 <body id="bodyTag">
 
     <div class="container">
-        <!-- Top Navigation / Language & Creator -->
+        <!-- Top Navigation / Language & Creator with Quote -->
         <div class="top-bar">
-            <div class="creator-badge" id="creatorText">
-                تطوير وابتكار: سبأ خالد علي (SABAA KHALID ALI)
+            <div class="creator-badge" id="creatorBadgeBox">
+                <span id="creatorName">ابتكار وتطوير: سبأ خالد علي (SABAA KHALID ALI)</span>
+                <span class="quote" id="creatorQuote">"نصنع أثراً.. لنغير مستقبلاً"</span>
             </div>
             <div class="lang-selector">
                 <select id="langSelect" onchange="changeLanguage()">
@@ -235,15 +283,22 @@
             </div>
         </div>
 
-        <header>
-            <h1 id="mainHeading">منصة سند الذكية</h1>
-            <p id="subHeading">أداة تعليمية دامجة لتسهيل وتكييف المحتوى الدراسي للطلاب ذوي صعوبات التعلم وعسر القراءة</p>
-        </header>
+        <!-- Brand Logo & Header -->
+        <div class="brand-header">
+            <div class="logo-icon">س</div>
+            <div>
+                <h1 id="mainHeading">منصة سند الذكية</h1>
+                <p id="subHeading">أداة تعليمية دامجة لتسهيل وتكييف المحتوى الدراسي</p>
+            </div>
+        </div>
 
-        <!-- Welcome & Motivation Banner -->
-        <div class="welcome-banner">
-            <h2 id="welcomeTitle">أهلاً بك في مستقبل التعلم المتاح للجميع! ✨</h2>
-            <p id="welcomeDesc">"التعليم ليس امتيازاً، بل حق أساسي لكل عقل طموح. صُممت هذه المنصة لتذليل الصعوبات وفتح أفق الفهم بلا حدود."</p>
+        <!-- Human-Centric Banner with Inspiring Photo -->
+        <div class="hero-banner">
+            <div class="hero-img-container">
+                <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1000&auto=format&fit=crop" alt="Inclusive Education Learning">
+            </div>
+            <h2 id="welcomeTitle">لأن التعليم حق لكل عقل طموح ✨</h2>
+            <p id="welcomeDesc">"صُممت منصة سند لتذليل عوائق القراءة، تمكين الطلاب ذوي صعوبات التعلم، وفتح أبواب الفهم البسيط والمباشر بلا حدود."</p>
         </div>
 
         <!-- Options bar for accessibility -->
@@ -275,11 +330,12 @@
         const translations = {
             ar: {
                 title: "منصة سند | التعليم الدامج وتسهيل المحتوى الدراسي",
-                creator: "تطوير وابتكار: سبأ خالد علي (SABAA KHALID ALI)",
+                name: "ابتكار وتطوير: سبأ خالد علي (SABAA KHALID ALI)",
+                quote: "\"نصنع أثراً.. لنغير مستقبلاً\"",
                 mainHeading: "منصة سند الذكية",
-                subHeading: "أداة تعليمية دامجة لتسهيل وتكييف المحتوى الدراسي للطلاب ذوي صعوبات التعلم وعسر القراءة",
-                welcomeTitle: "أهلاً بك في مستقبل التعلم المتاح للجميع! ✨",
-                welcomeDesc: "\"التعليم ليس امتيازاً، بل حق أساسي لكل عقل طموح. صُممت هذه المنصة لتذليل الصعوبات وفتح أفق الفهم بلا حدود.\"",
+                subHeading: "أداة تعليمية دامجة لتسهيل وتكييف المحتوى الدراسي",
+                welcomeTitle: "لأن التعليم حق لكل عقل طموح ✨",
+                welcomeDesc: "\"صُممت منصة سند لتذليل عوائق القراءة، تمكين الطلاب ذوي صعوبات التعلم، وفتح أبواب الفهم البسيط والمباشر بلا حدود.\"",
                 accessibilityLabel: "خيارات الوصول المريح:",
                 dyslexiaBtn: "خط عسر القراءة",
                 darkModeBtn: "وضع راحة العين",
@@ -289,17 +345,19 @@
                 clearBtn: "مسح النص",
                 outputLabel: "الناتج المُبسّط (نقاط رئيسية واضحة):",
                 defaultOutput: "سيظهر النص المُبسّط والجاهز للقراءة هنا...",
+                processingText: "⏳ جارٍ تحليل النص وتسهيله عبر خوارزميات سند الذكية...",
                 successMsg: "<strong>✨ تم تحليل وتسهيل النص بنجاح:</strong>\n\n• <strong>الفكرة الأساسية:</strong> ",
-                pointsText: "\n• <strong>النقاط المركزة:</strong> تم إعادة صياغة الجمل الطويلة إلى عبارات قصيرة ومباشرة.\n• <strong>توجيه للمذاكرة:</strong> ركز على المصطلحات الرئيسية لضمان الفهم السريع.",
+                pointsText: "\n• <strong>النقاط المركزة:</strong> تم تحويل الكتل النصية الطويلة إلى نقاط سريعة واضحة.\n• <strong>توجيه المذاكرة:</strong> ركز على الأفكار المصنفة أعلاه لضمان استيعاب فوري.",
                 emptyError: "الرجاء إدخال نص أولاً ليتم معالجته."
             },
             en: {
                 title: "Sanad Platform | Inclusive Education & Text Simplification",
-                creator: "Developed by: Sabaa Khalid Ali",
+                name: "Developed by: Sabaa Khalid Ali",
+                quote: "\"Creating impact.. transforming futures\"",
                 mainHeading: "Sanad Smart Platform",
-                subHeading: "An inclusive educational tool to simplify and adapt academic content for students with learning difficulties",
-                welcomeTitle: "Welcome to the Future of Accessible Learning! ✨",
-                welcomeDesc: "\"Education is not a privilege, but a fundamental right for every ambitious mind. Designed to break barriers and foster understanding.\"",
+                subHeading: "An inclusive educational tool to simplify and adapt academic content",
+                welcomeTitle: "Because Education is a Right for Every Ambitious Mind ✨",
+                welcomeDesc: "\"Sanad platform is designed to break reading barriers, empower students with learning difficulties, and foster clear understanding.\"",
                 accessibilityLabel: "Accessibility Options:",
                 dyslexiaBtn: "Dyslexia Font",
                 darkModeBtn: "Dark Mode",
@@ -309,17 +367,19 @@
                 clearBtn: "Clear Text",
                 outputLabel: "Simplified Output (Clear Key Points):",
                 defaultOutput: "The simplified text will appear here...",
+                processingText: "⏳ Analyzing and simplifying text using Sanad smart algorithms...",
                 successMsg: "<strong>✨ Text successfully analyzed and simplified:</strong>\n\n• <strong>Core Idea:</strong> ",
-                pointsText: "\n• <strong>Key Focus Points:</strong> Long sentences have been broken into short, direct phrases.\n• <strong>Study Tip:</strong> Focus on the main terms highlighted above for quick comprehension.",
+                pointsText: "\n• <strong>Key Focus Points:</strong> Long text blocks converted into clear, direct bullet points.\n• <strong>Study Tip:</strong> Focus on the main terms highlighted above for quick comprehension.",
                 emptyError: "Please enter text first to process."
             },
             tr: {
                 title: "Sanad Platformu | Kapsayıcı Eğitim ve İçerik Basitleştirme",
-                creator: "Geliştiren: Sabaa Khalid Ali",
+                name: "Geliştiren: Sabaa Khalid Ali",
+                quote: "\"Etki yaratıyoruz.. geleceği değiştiriyoruz\"",
                 mainHeading: "Sanad Akıllı Platformu",
-                subHeading: "Öğrenme güçlüğü çeken öğrenciler için akademik içeriği basitleştiren kapsayıcı bir eğitim aracı",
-                welcomeTitle: "Herkes İçin Erişilebilir Eğitimin Geleceğine Hoş Geldiniz! ✨",
-                welcomeDesc: "\"Eğitim bir ayrıcalık değil, her hırslı zihin için temel bir haktır. Engelleri kaldırmak ve anlamayı kolaylaştırmak için tasarlandı.\"",
+                subHeading: "Akademik içeriği basitleştiren kapsayıcı bir eğitim aracı",
+                welcomeTitle: "Çünkü Eğitim Her Hırslı Zihin İçin Bir Haktır ✨",
+                welcomeDesc: "\"Sanad platformu, okuma engellerini kaldırmak ve öğrenme güçlüğü çeken öğrencileri desteklemek için tasarlandı.\"",
                 accessibilityLabel: "Erişilebilirlik Seçenekleri:",
                 dyslexiaBtn: "Disleksi Yazı Tipi",
                 darkModeBtn: "Göz Koruma Modu",
@@ -329,17 +389,19 @@
                 clearBtn: "Temizle",
                 outputLabel: "Basitleştirilmiş Çıktı (Önemli Noktalar):",
                 defaultOutput: "Basitleştirilmiş metin burada görünecektir...",
+                processingText: "⏳ Sanad akıllı algoritmaları kullanılarak metin analiz ediliyor...",
                 successMsg: "<strong>✨ Metin başarıyla analiz edildi ve basitleştirildi:</strong>\n\n• <strong>Ana Fikir:</strong> ",
-                pointsText: "\n• <strong>Odak Noktaları:</strong> Uzun cümleler kısa ve net ifadelere dönüştürüldü.\n• <strong>Çalışma İpucu:</strong> Hızlı kavrama için vurgulanan ana terimlere odaklanın.",
+                pointsText: "\n• <strong>Odak Noktaları:</strong> Uzun metinler kısa ve net maddelere dönüştürüldü.\n• <strong>Çalışma İpucu:</strong> Hızlı kavrama için vurgulanan ana terimlere odaklanın.",
                 emptyError: "Lütfen işlemek için önce metin girin."
             },
             fr: {
                 title: "Plateforme Sanad | Éducation Inclusive et Simplification",
-                creator: "Développé par : Sabaa Khalid Ali",
+                name: "Développé par : Sabaa Khalid Ali",
+                quote: "\"Créer un impact.. transformer l'avenir\"",
                 mainHeading: "Plateforme Intelligente Sanad",
-                subHeading: "Un outil pédagogique inclusif pour simplifier et adapter le contenu académique",
-                welcomeTitle: "Bienvenue dans le futur de l'apprentissage accessible ! ✨",
-                welcomeDesc: "\"L'éducation n'est pas un privilège, mais un droit fondamental pour chaque esprit ambitieux.\"",
+                subHeading: "Un outil pédagogique inclusif pour simplifier le contenu",
+                welcomeTitle: "Parce que l'éducation est un droit pour chaque esprit ambitieux ✨",
+                welcomeDesc: "\"La plateforme Sanad est conçue pour briser les barrières de lecture et responsabiliser les étudiants.\"",
                 accessibilityLabel: "Options d'accessibilité :",
                 dyslexiaBtn: "Police Dyslexie",
                 darkModeBtn: "Mode Sombre",
@@ -349,8 +411,9 @@
                 clearBtn: "Effacer",
                 outputLabel: "Résultat Simplifié :",
                 defaultOutput: "Le texte simplifié apparaîtra ici...",
+                processingText: "⏳ Analyse et simplification du texte en cours...",
                 successMsg: "<strong>✨ Texte analysé et simplifié avec succès :</strong>\n\n• <strong>Idée principale :</strong> ",
-                pointsText: "\n• <strong>Points clés :</strong> Les phrases longues ont été transformées en expressions directes.\n• <strong>Conseil :</strong> Concentrez-vous sur les termes principaux.",
+                pointsText: "\n• <strong>Points clés :</strong> Blocs de texte convertis en points clairs et directs.\n• <strong>Conseil :</strong> Concentrez-vous sur les termes principaux.",
                 emptyError: "Veuillez entrer du texte d'abord."
             }
         };
@@ -362,7 +425,6 @@
             currentLang = select.value;
             const t = translations[currentLang];
 
-            // Set Direction
             const htmlRoot = document.getElementById('htmlRoot');
             if (currentLang === 'ar') {
                 htmlRoot.setAttribute('dir', 'rtl');
@@ -372,9 +434,9 @@
                 htmlRoot.setAttribute('lang', currentLang);
             }
 
-            // Update text content
             document.getElementById('pageTitle').textContent = t.title;
-            document.getElementById('creatorText').textContent = t.creator;
+            document.getElementById('creatorName').textContent = t.name;
+            document.getElementById('creatorQuote').textContent = t.quote;
             document.getElementById('mainHeading').textContent = t.mainHeading;
             document.getElementById('subHeading').textContent = t.subHeading;
             document.getElementById('welcomeTitle').textContent = t.welcomeTitle;
@@ -400,7 +462,14 @@
                 return;
             }
 
-            outputDiv.innerHTML = t.successMsg + text.substring(0, 100) + "..." + t.pointsText;
+            // عرض تأثير المعالجة والتفاعل اللحظي
+            outputDiv.innerHTML = t.processingText;
+            outputDiv.style.opacity = "0.6";
+
+            setTimeout(() => {
+                outputDiv.innerHTML = t.successMsg + text.substring(0, 100) + "..." + t.pointsText;
+                outputDiv.style.opacity = "1";
+            }, 700);
         }
 
         function clearText() {
@@ -414,7 +483,7 @@
         }
 
         function toggleDarkMode() {
-            document.body.classList.toggle('dark-node');
+            document.body.classList.toggle('dark-mode');
         }
     </script>
 </body>
